@@ -96,7 +96,9 @@ def can_i_move_LEFT(matrix):
                 return True
     return False
 
-#the 4 following function will find out if any we
+#the 4 following function will find out if any we there are
+#any empty spaces in a line or column(needed when we need to shift
+#the numbers to a certain direction)
 def check_line_rightwards(matrix, line, column):
     for i in range(column, 4):
         if matrix[line][i] != 0:
@@ -144,7 +146,7 @@ def move_UP(event, matrix, score, labels, window):
         for j in range(0, 4):
             if check_column_downwards(matrix, j, i) == True:
                 while matrix[i][j] == 0:
-                    for k in range(i, 3):#nu e cea mai eficienta abordare
+                    for k in range(i, 3):#could have been more efficient
                         matrix[k][j] = matrix[k + 1][j]
                     matrix[3][j] = 0
     for i in range(0, 3):
