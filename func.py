@@ -4,13 +4,13 @@ from game import label_update
 import random
 import time
 
-#golim matricea
+#empty the matrix
 def set_matrix(a):
     for i in range(0, 4):
         for j in range(0, 4):
             a[i][j] = 0
 
-#verificam daca matricea e goala
+#check if the matrix is empty
 def ungoing_game(a):
     if len(a) == 0:
         return False
@@ -35,7 +35,7 @@ def generate_number(matrix):
     del generator
 
 
-#verificam daca mai exista vreo mutare posibila
+#any possible move?
 def check_for_moves(matrix):
     for i in range(0, 3):
         for j in range(0, 3):
@@ -48,7 +48,7 @@ def check_for_moves(matrix):
         return True
     return False
 
-#verificam daca ne putem deplasa in sus
+#can we go up?
 def can_i_move_UP(matrix):
     for i in range(0, 3):
         for j in range(0, 4):
@@ -60,7 +60,7 @@ def can_i_move_UP(matrix):
                 return True
     return False
 
-#verificam daca ne putem deplasa in jos
+#can we go down?
 def can_i_move_DOWN(matrix):
     for i in range(0, 3):
         for j in range(0, 4):
@@ -72,7 +72,7 @@ def can_i_move_DOWN(matrix):
                 return True
     return False
 
-#verificam daca ne putem deplasa spre dreapta
+#can we go right?
 def can_i_move_RIGHT(matrix):
     for i in range(0, 4):
         for j in range(0, 3):
@@ -84,7 +84,7 @@ def can_i_move_RIGHT(matrix):
                 return True
     return False
 
-#verificam daca ne putem deplasa spre stanga
+#can we go left?
 def can_i_move_LEFT(matrix):
     for i in range(0, 4):
         for j in range(0, 3):
@@ -96,35 +96,32 @@ def can_i_move_LEFT(matrix):
                 return True
     return False
 
-#verificam daca pe linia i sunt numere diferite de 0, incepand cu coloana j, spre coloana 3
+#the 4 following function will find out if any we
 def check_line_rightwards(matrix, line, column):
     for i in range(column, 4):
         if matrix[line][i] != 0:
             return True
     return False
 
-#verificam daca pe coloana j sunt numere diferite de 0, incepand cu linia i, spre linia 3
 def check_column_downwards(matrix, column, line):
     for i in range(line, 4):
         if matrix[i][column] != 0:
             return True
     return False
 
-#verificam daca pe coloana j sunt numere diferite de 0, incepand cu linia i, spre linia 0
 def check_column_upwards(matrix, column, line):
     for i in range(line, -1, -1):
         if matrix[i][column] != 0:
             return True
     return False
 
-#verifcam daca pe linia i sunt numere diferite de 0, incapand cu coloana j, spre coloana 0
 def check_line_leftwards(matrix, line, column):
     for i in range(column, -1, -1):
         if matrix[line][i] != 0:
             return True
     return False
 
-#inchidem fereasta cu jocul
+#close the window once the game is done
 def end_game(window, matrix):
     if check_for_moves(matrix) == False:
         window.unbind_all("<Up>")
@@ -137,7 +134,6 @@ def end_game(window, matrix):
         return True
     return False
 
-#ne deplasam in sus
 def move_UP(event, matrix, score, labels, window):
     x = end_game(window, matrix)
     if x:
@@ -162,7 +158,6 @@ def move_UP(event, matrix, score, labels, window):
     generate_number(matrix)
     label_update(matrix, labels)
 
-#ne deplasam in jos
 def move_DOWN(event, matrix, score, labels, window):
     x = end_game(window, matrix)
     if x:
@@ -187,7 +182,6 @@ def move_DOWN(event, matrix, score, labels, window):
     generate_number(matrix)
     label_update(matrix, labels)
 
-#ne deplasam spre dreapta
 def move_RIGHT(event, matrix, score, labels, window):
     x = end_game(window, matrix)
     if x:
@@ -212,7 +206,6 @@ def move_RIGHT(event, matrix, score, labels, window):
     generate_number(matrix)
     label_update(matrix, labels)
 
-#ne deplasam spre stanga
 def move_LEFT(event, matrix, score, labels, window):
     x = end_game(window, matrix)
     if x:
